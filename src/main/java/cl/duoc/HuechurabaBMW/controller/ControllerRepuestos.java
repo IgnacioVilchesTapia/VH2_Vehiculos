@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/repuestos")
-public class ControllerVehiculo {
+public class ControllerRepuestos {
 
     @Autowired
     private RepositoryRepuestos repository;
@@ -74,10 +74,4 @@ public class ControllerVehiculo {
         }
     }
 }
-public class ControllerVehiculo {
 
-}
-
-public class ControllerRepuestos {
-
-}
