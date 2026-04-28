@@ -74,3 +74,7 @@ public class ControllerRepuestos {
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2fa29e8cc7fc18834a8ce031cfdd05e6f2fc28c6
