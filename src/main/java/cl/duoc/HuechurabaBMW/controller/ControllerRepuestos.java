@@ -1,5 +1,5 @@
 package cl.duoc.HuechurabaBMW.controller;
 
-public class ControllerVehiculo {
+public class ControllerRepuestos {
 
 }
