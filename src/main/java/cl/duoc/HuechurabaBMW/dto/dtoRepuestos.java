@@ -1,11 +1,23 @@
 package cl.duoc.HuechurabaBMW.dto;
 
 import lombok.*;
+<<<<<<< HEAD
+=======
 import jakarta.validation.constraints.*;
+>>>>>>> 8d5c7e6e37c1de08c564bf75ecf0825fc6c7a395
 
 @Getter
 @Setter
 @NoArgsConstructor
+<<<<<<< HEAD
+@AllArgConstructor
+
+public class dtoRepuestos {
+    private Long id;
+    private String marca;
+    private String nombre;
+    private int stock;
+=======
 @AllArgsConstructor
 public class DTORepuestos {
 
@@ -19,5 +31,6 @@ public class DTORepuestos {
     private int stock;
 
     @Min(value = 0, message = "El precio debe ser mayor o igual a 0")
+>>>>>>> 8d5c7e6e37c1de08c564bf75ecf0825fc6c7a395
     private double precio;
 }
