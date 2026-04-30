@@ -22,10 +22,12 @@ public class ModelRepuestos {
     @NotBlank(message = "El nombre no puede estar vacío")
     private String nombre;
 
-    @Min(value = 0, message = "El stock debe ser mayor o igual a 0")
+    private String modelo;
+
+    @Min(value = 0, message = "El stock no puede ser negativo")
     private int stock;
 
-    @Min(value = 0, message = "El precio debe ser mayor o igual a 0")
+    @Min(value = 0, message = "El precio no puede ser negativo")
     private double precio;
 
 }
