@@ -26,9 +26,14 @@ public class ControllerRepuestos {
         return service.listar();
     }
 
+    @GetMapping("/{id}")
+    public ModelRepuestos obtenerPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
+
     @GetMapping("/{id}/stock")
-    public String verStock(@PathVariable Long id) {
-        return "Stock disponible: " + service.buscarPorId(id).getStock();
+    public int verStock(@PathVariable Long id) {
+        return service.buscarPorId(id).getStock();
     }
 
     @PutMapping("/{id}/vender")
