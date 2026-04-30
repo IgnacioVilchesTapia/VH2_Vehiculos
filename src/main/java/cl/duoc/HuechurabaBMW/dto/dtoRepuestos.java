@@ -20,4 +20,5 @@ public class DTORepuestos {
 
     @Min(value = 0, message = "El precio debe ser mayor o igual a 0")
     private double precio;
+    
 }
