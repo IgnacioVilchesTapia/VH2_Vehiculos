@@ -2,6 +2,7 @@ package cl.duoc.HuechurabaBMW.controller;
 
 import cl.duoc.HuechurabaBMW.model.ModelRepuestos;
 import cl.duoc.HuechurabaBMW.service.ServiceRepuestos;
+import jakarta.validation.Valid;
 import cl.duoc.HuechurabaBMW.dto.DTORepuestos;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class ControllerRepuestos {
     private ServiceRepuestos service;
 
     @PostMapping
-    public ModelRepuestos agregarRepuesto(@RequestBody DTORepuestos dto) {
+    public ModelRepuestos agregarRepuesto(@RequestBody @Valid DTORepuestos dto) {
         return service.save(dto);
     }
 
