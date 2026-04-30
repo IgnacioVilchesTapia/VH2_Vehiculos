@@ -1,77 +1,49 @@
 package cl.duoc.HuechurabaBMW.controller;
 
 import cl.duoc.HuechurabaBMW.model.ModelRepuestos;
-import cl.duoc.HuechurabaBMW.repository.RepositoryRepuestos;
+import cl.duoc.HuechurabaBMW.service.ServiceRepuestos;
+import cl.duoc.HuechurabaBMW.dto.DTORepuestos;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/repuestos")
 public class ControllerRepuestos {
 
     @Autowired
-    private RepositoryRepuestos repository;
+    private ServiceRepuestos service;
 
-    // 1: Agregar nuevo repuesto
+    // Crear
     @PostMapping
-    public ModelRepuestos agregarRepuesto(@RequestBody ModelRepuestos repuesto) {
-        return repository.save(repuesto);
+    public ModelRepuestos agregarRepuesto(@RequestBody DTORepuestos dto) {
+        return service.save(dto);
     }
 
-    // 2: Ver todos los repuestos
+    // Listar
     @GetMapping
     public List<ModelRepuestos> obtenerRepuestos() {
-        return repository.findAll();
+        return service.listar();
     }
 
-    // 3: Ver stock de un repuesto por ID
+    // Ver stock
     @GetMapping("/{id}/stock")
     public String verStock(@PathVariable Long id) {
-        Optional<ModelRepuestos> repuesto = repository.findById(id);
-
-        if (repuesto.isPresent()) {
-            return "Stock disponible: " + repuesto.get().getStock();
-        } else {
-            return "Repuesto no encontrado";
-        }
+        return "Stock disponible: " + service.buscarPorId(id).getStock();
     }
 
-    //4: Vender repuesto (disminuir stock)
+    // Vender
     @PutMapping("/{id}/vender")
-    public String venderRepuesto(@PathVariable Long id, @RequestParam int cantidad) {
-        Optional<ModelRepuestos> repuesto = repository.findById(id);
-
-        if (repuesto.isPresent()) {
-            ModelRepuestos r = repuesto.get();
-
-            if (r.getStock() >= cantidad) {
-                r.setStock(r.getStock() - cantidad);
-                repository.save(r);
-                return "Venta realizada. Nuevo stock: " + r.getStock();
-            } else {
-                return "No hay suficiente stock";
-            }
-        } else {
-            return "Repuesto no encontrado";
-        }
+    public ModelRepuestos vender(@PathVariable Long id) {
+        return service.vender(id);
     }
 
-    // 5: Agregar unidades (aumentar stock)
+    // Agregar stock
     @PutMapping("/{id}/agregar")
-    public String agregarStock(@PathVariable Long id, @RequestParam int cantidad) {
-        Optional<ModelRepuestos> repuesto = repository.findById(id);
-
-        if (repuesto.isPresent()) {
-            ModelRepuestos r = repuesto.get();
-            r.setStock(r.getStock() + cantidad);
-            repository.save(r);
-            return "Stock actualizado. Nuevo stock: " + r.getStock();
-        } else {
-            return "Repuesto no encontrado";
-        }
+    public ModelRepuestos agregarStock(@PathVariable Long id,
+                                       @RequestParam int cantidad) {
+        return service.agregarStock(id, cantidad);
     }
 }
-
